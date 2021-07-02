@@ -1,15 +1,17 @@
 import './index.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import App from './App';
 import Normalize from 'react-normalize';
 
+import store from './store';
+import App from './App';
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Normalize />
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root'),
 );
