@@ -1,18 +1,22 @@
-import './App.scss';
+import 'antd/dist/antd.css';
+import style from './App.module.scss';
+import Todo from './components/Todo';
+import { createTodoList } from './data/todolist';
 
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { dummyAction } from './store/services/todo/actions';
+import React from 'react';
 
-const App = (props) => {
-  const todoReducer = useSelector((state) => state.todoReducer);
+const App = () => {
+  const todoList = createTodoList(10);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(dummyAction());
-  }, []);
-  return <div className="App">HELLO {todoReducer.foo}</div>;
+  console.log(todoList);
+  return (
+    <div className={style.container}>
+      <div className={style.header} />
+      <div className={style.content}>
+        <Todo todoList={todoList} />
+      </div>
+    </div>
+  );
 };
 
 export default App;

@@ -1,0 +1,29 @@
+.container {
+  .checkbox {
+    width: 100%;
+    padding: 12px;
+    border-bottom: 1px solid lightgray;
+    background-color: #f7f7f7;
+
+    .title {
+      font-size: 16px;
+    }
+
+    .description {
+      font-size: 14px;
+    }
+
+    .deadline {
+      font-size: 12px;
+      color: darkgray;
+
+      &__error {
+        color: darkred;
+      }
+
+      &__success {
+        color: darkgreen;
+      }
+    }
+  }
+}
