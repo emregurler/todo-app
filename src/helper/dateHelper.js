@@ -1,11 +1,5 @@
 import dayjs from 'dayjs';
-
-const taskStatusMap = {
-  FAIL: 'fail',
-  SUCCESS: 'success',
-  NEUTRAL: 'neutral',
-  HURRY: 'hurry',
-};
+import { taskStatusMap } from './constants';
 
 const defaultDateFormat = 'YYYY-MM-DD HH:mm:ss';
 

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox, Button } from 'antd';
 import { getTaskStatusWithDate } from '../../../helper/dateHelper';
+import { deadlineTextMap, taskStatusMap } from '../../../helper/constants';
 
 const TodoItem = (props) => {
   const { onChangeCheckbox, onDelete, onEdit, ...todo } = props;
@@ -20,6 +21,9 @@ const TodoItem = (props) => {
         <div className={style.description}>{todo.description}</div>
         <div className={`${style.deadline} ${style[`deadline__${taskStatus}`]}`}>
           {todo.deadline}
+          <span className={style.deadlineText}>{`${
+            taskStatus !== taskStatusMap.NEUTRAL ? ' - ' : ''
+          } ${deadlineTextMap[taskStatus]}`}</span>
         </div>
         <div className={style.operationTab}>
           <Button size="small" type="primary" danger onClick={() => onDelete(todo.id)}>
