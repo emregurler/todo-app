@@ -22,7 +22,7 @@ const TodoItem = (props) => {
           {todo.deadline}
         </div>
         <div className={style.operationTab}>
-          <Button size="small" type="primary" danger onClick={() => onDelete(id)}>
+          <Button size="small" type="primary" danger onClick={() => onDelete(todo.id)}>
             Delete
           </Button>
           <Button size="small" onClick={() => onEdit(todo)}>

@@ -5,15 +5,21 @@ const initialState = {
   allTodos: [],
   shownTodos: [],
   filter: filterTypeMap.ALL,
+  loading: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case types.FETCH_ALL_TODOS:
+      return {
+        ...state,
+        loading: true,
+      };
     case types.SUCCESS_ALL_TODOS:
       return {
         ...state,
         allTodos: action.todos,
-        shownTodos: filterTodos(action.todos, state.filter),
+        loading: false,
       };
     case types.SUCCESS_TOGGLE_TODO:
       const foundId = state.allTodos.findIndex((todo) => todo.id === action.id);
@@ -24,22 +30,22 @@ export default (state = initialState, action) => {
         return {
           ...state,
           allTodos: copyTodos,
-          shownTodos: filterTodos(copyTodos, state.filter),
         };
       } else {
         return state;
       }
+    case types.DELETE_TODO:
+      return {
+        ...state,
+        allTodos: state.allTodos.filter((todo) => todo.id !== action.id),
+      };
+    case types.SET_FILTER:
+      return {
+        ...state,
+        filter: action.filter,
+      };
+
     default:
       return state;
-  }
-};
-
-const filterTodos = (todos, filter) => {
-  if (filter === filterTypeMap.ALL) {
-    return todos;
-  } else if (filter === filterTypeMap.DONE) {
-    return todos.filter((todo) => todo.done === filterTypeMap.DONE);
-  } else {
-    return todos.filter((todo) => todo.done !== filterTypeMap.DONE);
   }
 };

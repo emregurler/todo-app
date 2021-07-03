@@ -14,8 +14,8 @@ export const successAllTodos = (todos) => ({
   todos,
 });
 
-export const filterBy = (filter) => ({
-  type: types.FILTER_BY,
+export const setFilter = (filter) => ({
+  type: types.SET_FILTER,
   filter,
 });
 
@@ -36,5 +36,20 @@ export const successToggleTodo = (id) => ({
 
 export const failToggleTodo = (error) => ({
   type: types.FAIL_TOGGLE_TODO,
+  error,
+});
+
+export const deleteTodo = (id) => ({
+  type: types.DELETE_TODO,
+  id,
+});
+
+export const successDeleteTodo = (id) => ({
+  type: types.SUCCESS_DELETE_TODO,
+  id,
+});
+
+export const failSuccessTodo = (error) => ({
+  type: types.FAIL_DELETE_TODO,
   error,
 });
