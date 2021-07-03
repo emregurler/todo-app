@@ -15,6 +15,7 @@ const TodoList = ({ list }) => {
           title={todo.title}
           description={todo.description}
           deadline={todo.deadline}
+          onChange={() => {}}
         />
       ))}
     </div>
