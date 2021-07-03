@@ -5,29 +5,27 @@ import PropTypes from 'prop-types';
 import { Checkbox, Button } from 'antd';
 import { getTaskStatusWithDate } from '../../../helper/dateHelper';
 
-const TodoItem = ({
-  id,
-  done,
-  title,
-  description,
-  deadline,
-  onChangeCheckbox,
-  onDelete,
-  onEdit,
-}) => {
-  const taskStatus = getTaskStatusWithDate(deadline, done);
+const TodoItem = (props) => {
+  const { onChangeCheckbox, onDelete, onEdit, ...todo } = props;
+  const taskStatus = getTaskStatusWithDate(todo.deadline, todo.done);
 
   return (
     <div className={style.container}>
-      <Checkbox className={style.checkbox} checked={done} onChange={() => onChangeCheckbox(id)}>
-        <div className={style.title}>{title}</div>
-        <div className={style.description}>{description}</div>
-        <div className={`${style.deadline} ${style[`deadline__${taskStatus}`]}`}>{deadline}</div>
+      <Checkbox
+        className={style.checkbox}
+        checked={todo.done}
+        onChange={() => onChangeCheckbox(todo)}
+      >
+        <div className={style.title}>{todo.title}</div>
+        <div className={style.description}>{todo.description}</div>
+        <div className={`${style.deadline} ${style[`deadline__${taskStatus}`]}`}>
+          {todo.deadline}
+        </div>
         <div className={style.operationTab}>
           <Button size="small" type="primary" danger onClick={() => onDelete(id)}>
             Delete
           </Button>
-          <Button size="small" onClick={() => onEdit(id)}>
+          <Button size="small" onClick={() => onEdit(todo)}>
             Edit
           </Button>
         </div>

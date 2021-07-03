@@ -2,8 +2,9 @@ import style from './TodoList.module.scss';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import TodoItem from '../TodoItem';
+import { toggleTodo } from '../../../store/services/todo/actions';
+import { deleteTodo } from '../../../store/services/todo/api';
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todoReducer.shownTodos);
@@ -19,8 +20,12 @@ const TodoList = () => {
           title={todo.title}
           description={todo.description}
           deadline={todo.deadline}
-          onChangeCheckbox={(id) => {}}
-          onDelete={(id) => {}}
+          onChangeCheckbox={(todo) => {
+            dispatch(toggleTodo(todo));
+          }}
+          onDelete={(id) => {
+            dispatch(deleteTodo(id));
+          }}
           onEdit={(id) => {}}
         />
       ))}

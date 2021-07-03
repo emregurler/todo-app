@@ -1,7 +1,9 @@
 import api from '../axios';
 
 const getTodos = () => api.get('todos');
-const putTodo = (id, todo) => api.put(`todos/${id}`, todo);
+const putTodo = (id, todo) => {
+  api.put(`todos/${id}`, todo);
+};
 const postTodo = (todo) => api.put('todos', todo);
 const deleteTodo = (id) => api.delete(`todos/${id}`);
 
