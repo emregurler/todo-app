@@ -1,21 +1,23 @@
 import style from './Todo.module.scss';
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import TodoList from './TodoList';
 import TodoHeader from './TodoHeader';
+import { fetchAllTodos } from '../../store/services/todo/actions';
 
-const Todo = ({ todoList }) => {
+const Todo = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllTodos());
+  }, []);
   return (
     <div className={style.container}>
       <TodoHeader />
-      <TodoList list={todoList} />
+      <TodoList />
     </div>
   );
-};
-
-Todo.propTypes = {
-  todoList: PropTypes.array,
 };
 
 export default Todo;

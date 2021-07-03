@@ -1,11 +1,16 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, call } from 'redux-saga/effects';
 import types from './action-types';
+import { getTodos } from './api';
 
-function* dummySaga() {
-  console.log('DUMMY SAGA');
-  yield;
+function* fetchAllTodos() {
+  try {
+    const res = yield call(getTodos);
+    console.log(res);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export default function* todoSaga() {
-  yield takeLatest(types.DUMMY_ACTION, dummySaga);
+  yield takeLatest(types.FETCH_ALL_TODOS, fetchAllTodos);
 }

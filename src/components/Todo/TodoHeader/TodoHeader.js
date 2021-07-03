@@ -6,7 +6,7 @@ import { Radio, Button } from 'antd';
 
 const TodoHeader = (props) => {
   const onChange = (e) => {
-    console.log(`radio checked:${e.target.value}`);
+    // console.log(`radio checked:${e.target.value}`);
   };
   return (
     <div className={style.container}>
