@@ -1,13 +1,12 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-shrink: 0;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 0 20px;
+  justify-content: space-between;
+
   box-sizing: border-box;
   height: 150px;
-  background-color: brown;
+  border: 5px solid gray;
   position: sticky;
   top: 0;
 
@@ -16,5 +15,18 @@
     font-size: 40px;
     font-weight: 400;
     color: whitesmoke;
+    align-self: center;
+  }
+
+  .headerOperationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 12px;
+    .operations {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
   }
 }
