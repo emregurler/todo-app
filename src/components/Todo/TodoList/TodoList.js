@@ -1,26 +1,17 @@
-import style from './Todo.module.scss';
+import style from './TodoList.module.scss';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Button } from 'antd';
-import {
-  deleteTodo,
-  fetchAllTodos,
-  toggleTodo,
-  setFilter,
-} from '../../store/services/todo/actions';
-import { filterTypeMap } from '../../helper/constants';
-import Template from '../Template';
-import NoContent from './NoContent';
-import TodoItem from './TodoItem';
+import { deleteTodo, toggleTodo, setFilter } from '../../../store/services/todo/actions';
+import { filterTypeMap } from '../../../helper/constants';
+import Template from '../../Template';
+import NoContent from '../NoContent';
+import TodoItem from '../TodoItem';
 
-const Todo = () => {
+const TodoList = () => {
   const { allTodos, filter, loading } = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchAllTodos());
-  }, []);
 
   const filterTodos = (todos, filter) => {
     if (filter === filterTypeMap.ALL) {
@@ -93,4 +84,6 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+TodoList.propTypes = {};
+
+export default TodoList;
