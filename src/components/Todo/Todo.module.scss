@@ -9,3 +9,20 @@
   width: 500px;
   height: 600px;
 }
+
+.headerOperationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 12px;
+  user-select: none;
+  .operations {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .hidden {
+      visibility: hidden;
+    }
+  }
+}
