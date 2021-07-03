@@ -4,6 +4,32 @@
     padding: 12px;
     border-bottom: 1px solid lightgray;
     background-color: #f7f7f7;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      background-color: #e2e2e2;
+
+      .operationTab {
+        transition: all 0.35s ease-in-out;
+        transform: translateX(0);
+        background-color: #e2e2e2;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      }
+    }
+
+    .operationTab {
+      transition: all 0.2s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      transform: translate3d(110%, 10%, 0);
+      background-color: #e2e2e2;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
 
     .title {
       font-size: 16px;
