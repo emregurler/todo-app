@@ -90,12 +90,10 @@ const TodoList = () => {
   };
 
   return (
-    <Template
-      className={style.abc}
-      title="Todo App"
-      headerBottomContent={renderHeaderBottomContent()}
-      mainContent={renderMainContent()}
-    />
+    <Template className={style.abc} title="Todo App">
+      <Template.Header title="Todo App">{renderHeaderBottomContent()}</Template.Header>
+      <Template.Content>{renderMainContent()}</Template.Content>
+    </Template>
   );
 };
 

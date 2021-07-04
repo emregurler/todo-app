@@ -87,7 +87,12 @@ const TodoForm = ({ todo }) => {
   };
 
   const templateTitle = formMode === templateModeMap.EDIT ? 'Edit Todo' : 'Add Todo';
-  return <Template className={style.abc} title={templateTitle} mainContent={renderMainContent()} />;
+  return (
+    <Template className={style.abc}>
+      <Template.Header title={templateTitle}></Template.Header>
+      <Template.Content>{renderMainContent()}</Template.Content>
+    </Template>
+  );
 };
 
 TodoForm.propTypes = {
