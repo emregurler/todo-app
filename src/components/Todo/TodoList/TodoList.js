@@ -19,8 +19,6 @@ const TodoList = () => {
   const { allTodos, filter, loading, templateMode } = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
 
-  const isListVisible = templateMode === templateModeMap.LIST;
-
   const filterTodos = (todos, filter) => {
     if (filter === filterTypeMap.ALL) {
       return todos;
@@ -36,59 +34,8 @@ const TodoList = () => {
   };
 
   const hasNoContent = allTodos.length === 0 && !loading;
-
-  const renderHeaderBottomContent = () => (
-    <div className={style.headerOperationContainer}>
-      <div className={style.operations}>
-        <Radio.Group
-          className={hasNoContent ? style.hidden : ''}
-          onChange={handleFilterChange}
-          defaultValue={filter}
-        >
-          <Radio.Button value="all">All</Radio.Button>
-          <Radio.Button value="done">Done</Radio.Button>
-          <Radio.Button value="active">Active</Radio.Button>
-        </Radio.Group>
-      </div>
-      <Button
-        onClick={() => {
-          dispatch(setTemplateMode(templateModeMap.ADD));
-        }}
-        size={hasNoContent ? 'large' : 'middle'}
-        shape="round"
-        style={{ padding: '0 40px' }}
-      >
-        Add Todo
-      </Button>
-    </div>
-  );
-
-  const renderMainContent = () => {
-    const shownTodos = filterTodos(allTodos, filter);
-    return hasNoContent ? (
-      <NoContent />
-    ) : (
-      shownTodos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          id={todo.id}
-          done={todo.done}
-          title={todo.title}
-          description={todo.description}
-          deadline={todo.deadline}
-          onChangeCheckbox={(todo) => {
-            dispatch(toggleTodo(todo));
-          }}
-          onDelete={(id) => {
-            dispatch(deleteTodo(id));
-          }}
-          onEdit={(todo) => {
-            dispatch(setTemplateMode(templateModeMap.EDIT, todo));
-          }}
-        />
-      ))
-    );
-  };
+  const isListVisible = templateMode === templateModeMap.LIST;
+  const shownTodos = filterTodos(allTodos, filter);
 
   const transitionClassNames = {
     enter: style['todoList-enter'],
@@ -101,8 +48,56 @@ const TodoList = () => {
   return (
     <CSSTransition in={isListVisible} unmountOnExit classNames={transitionClassNames} timeout={250}>
       <Template title="Todo App">
-        <Template.Header title="Todo App">{renderHeaderBottomContent()}</Template.Header>
-        <Template.Content>{renderMainContent()}</Template.Content>
+        <Template.Header title="Todo App">
+          <div className={style.headerOperationContainer}>
+            <div className={style.operations}>
+              <Radio.Group
+                className={hasNoContent ? style.hidden : ''}
+                onChange={handleFilterChange}
+                defaultValue={filter}
+              >
+                <Radio.Button value="all">All</Radio.Button>
+                <Radio.Button value="done">Done</Radio.Button>
+                <Radio.Button value="active">Active</Radio.Button>
+              </Radio.Group>
+            </div>
+            <Button
+              onClick={() => {
+                dispatch(setTemplateMode(templateModeMap.ADD));
+              }}
+              size={hasNoContent ? 'large' : 'middle'}
+              shape="round"
+              style={{ padding: '0 40px' }}
+            >
+              Add Todo
+            </Button>
+          </div>
+        </Template.Header>
+        <Template.Content>
+          {hasNoContent ? (
+            <NoContent />
+          ) : (
+            shownTodos.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                id={todo.id}
+                done={todo.done}
+                title={todo.title}
+                description={todo.description}
+                deadline={todo.deadline}
+                onChangeCheckbox={(todo) => {
+                  dispatch(toggleTodo(todo));
+                }}
+                onDelete={(id) => {
+                  dispatch(deleteTodo(id));
+                }}
+                onEdit={(todo) => {
+                  dispatch(setTemplateMode(templateModeMap.EDIT, todo));
+                }}
+              />
+            ))
+          )}
+        </Template.Content>
       </Template>
     </CSSTransition>
   );
