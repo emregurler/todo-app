@@ -55,6 +55,11 @@ export const failToggleTodo = (error) => ({
   error,
 });
 
+export const setDeletingTodoId = (id) => ({
+  type: types.SET_DELETING_TODO_ID,
+  id,
+});
+
 export const deleteTodo = (id) => ({
   type: types.DELETE_TODO,
   id,

@@ -5,10 +5,10 @@ import { CSSTransition } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Button } from 'antd';
 import {
-  deleteTodo,
   toggleTodo,
   setFilter,
   setTemplateMode,
+  setDeletingTodoId,
 } from '../../../store/services/todo/actions';
 import { filterTypeMap, templateModeMap } from '../../../helper/constants';
 import Template from '../../Template';
@@ -89,7 +89,7 @@ const TodoList = () => {
                   dispatch(toggleTodo(todo));
                 }}
                 onDelete={(id) => {
-                  dispatch(deleteTodo(id));
+                  dispatch(setDeletingTodoId(id));
                 }}
                 onEdit={(todo) => {
                   dispatch(setTemplateMode(templateModeMap.EDIT, todo));

@@ -8,6 +8,7 @@ export const initialState = {
   editingTodo: undefined,
   hasData: undefined,
   loading: false,
+  deletingTodoId: undefined,
 };
 
 export default (state = initialState, action) => {
@@ -51,12 +52,23 @@ export default (state = initialState, action) => {
         hasData: true,
         loading: false,
       };
+    case types.SET_DELETING_TODO_ID:
+      return {
+        ...state,
+        deletingTodoId: action.id,
+      };
     case types.SUCCESS_DELETE_TODO:
       const allTodos = state.allTodos.filter((todo) => todo.id !== action.id);
       return {
         ...state,
         allTodos,
+        deletingTodoId: undefined,
         hasData: allTodos.length > 0,
+      };
+    case types.FAIL_DELETE_TODO:
+      return {
+        ...state,
+        deletingTodoId: undefined,
       };
     case types.UPDATE_TODO: {
       return {
