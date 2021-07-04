@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Form as AntForm, Input, Button, DatePicker } from 'antd';
+import { Form as AntForm, Input, Button, DatePicker, Row, Space, Divider } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { defaultDateFormat } from '../../../helper/dateHelper';
@@ -50,24 +51,31 @@ const Form = ({ todo, onSubmit, onBack }) => {
       >
         <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
       </AntForm.Item>
-      <AntForm.Item {...tailLayout}>
-        <Button
-          size="large"
-          htmlType="button"
-          onClick={() => {
-            onBack(() => {
-              handleReset();
-            });
-          }}
-        >
-          Back
-        </Button>
-        <Button style={{ padding: '0 40px' }} size="large" type="primary" htmlType="submit">
-          {todo ? 'Update' : 'Add'}
-        </Button>
-        <Button size="large" htmlType="button" onClick={handleReset}>
-          Reset Fields
-        </Button>
+      <Divider style={{ border: 'none' }} />
+      <AntForm.Item>
+        <Row justify="space-between">
+          <Button
+            icon={<ArrowLeftOutlined />}
+            size="large"
+            htmlType="button"
+            onClick={() => {
+              onBack(() => {
+                handleReset();
+              });
+            }}
+          >
+            Back
+          </Button>
+
+          <Space>
+            <Button style={{ padding: '0 40px' }} size="large" type="primary" htmlType="submit">
+              {todo ? 'Update' : 'Add'}
+            </Button>
+            <Button size="large" htmlType="button" onClick={handleReset}>
+              Reset Fields
+            </Button>
+          </Space>
+        </Row>
       </AntForm.Item>
     </AntForm>
   );
