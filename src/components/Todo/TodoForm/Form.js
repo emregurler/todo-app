@@ -19,10 +19,6 @@ const Form = ({ todo, onSubmit, onBack }) => {
     }
   }, [JSON.stringify(todo)]);
 
-  const tailLayout = {
-    wrapperCol: { offset: 6, span: 16 },
-  };
-
   const handleReset = () => {
     form.resetFields();
   };
@@ -39,17 +35,17 @@ const Form = ({ todo, onSubmit, onBack }) => {
         label="Title"
         rules={[{ required: true, message: "Please enter todo's title!", whitespace: true }]}
       >
-        <Input placeholder="Enter title" />
+        <Input data-testid="title" placeholder="Enter title" />
       </AntForm.Item>
       <AntForm.Item name="description" label="Description">
-        <TextArea rows={4} placeholder="Enter description" />
+        <TextArea data-testid="description" rows={4} placeholder="Enter description" />
       </AntForm.Item>
       <AntForm.Item
         name="deadline"
         label="Deadline"
         rules={[{ type: 'object', required: true, message: 'Please select time!' }]}
       >
-        <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
+        <DatePicker data-testid="deadline" format="YYYY-MM-DD HH:mm:ss" showTime />
       </AntForm.Item>
       <Divider style={{ border: 'none' }} />
       <AntForm.Item>

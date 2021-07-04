@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component tests starting... form should displayed empty if it is add mode 1`] = `[Function]`;
+
+exports[`Form component tests starting... form should displayed empty if it is add mode 2`] = `[Function]`;

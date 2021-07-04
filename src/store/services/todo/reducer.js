@@ -1,7 +1,7 @@
 import types from './action-types';
 import { filterTypeMap, templateModeMap } from '../../../helper/constants';
 
-const initialState = {
+export const initialState = {
   allTodos: [],
   filter: filterTypeMap.ALL,
   templateMode: templateModeMap.LIST,

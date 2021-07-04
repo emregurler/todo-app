@@ -5,7 +5,7 @@ import React from 'react';
 
 const NoContent = () => {
   return (
-    <div className={style.container}>
+    <div data-testid="no-content" className={style.container}>
       <div>No items in Todo List</div>
       <div>
         <FrownOutlined style={{ fontSize: 100 }} />

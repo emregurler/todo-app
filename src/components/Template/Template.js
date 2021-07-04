@@ -6,7 +6,11 @@ import Header from './TemplateHeader';
 import Content from './TemplateContent';
 
 const Template = ({ className = '', children }) => {
-  return <div className={`${style.container} ${className}`}>{children}</div>;
+  return (
+    <div data-testid="template" className={`${style.container} ${className}`}>
+      {children}
+    </div>
+  );
 };
 
 Template.propTypes = {
