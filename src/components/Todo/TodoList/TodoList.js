@@ -1,6 +1,7 @@
 import style from './TodoList.module.scss';
 
 import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Button } from 'antd';
 import {
@@ -17,6 +18,8 @@ import TodoItem from '../TodoItem';
 const TodoList = () => {
   const { allTodos, filter, loading, templateMode } = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
+
+  const isListVisible = templateMode === templateModeMap.LIST;
 
   const filterTodos = (todos, filter) => {
     if (filter === filterTypeMap.ALL) {
@@ -87,14 +90,21 @@ const TodoList = () => {
     );
   };
 
+  const transitionClassNames = {
+    enter: style['todoList-enter'],
+    enterActive: style['todoList-enter-active'],
+    exit: style['todoList-exit'],
+    exitActive: style['todoList-exit-active'],
+    exitDone: style['todoList-exit-done'],
+  };
+
   return (
-    <Template
-      className={templateMode === templateModeMap.LIST ? style.visible : style.hidden}
-      title="Todo App"
-    >
-      <Template.Header title="Todo App">{renderHeaderBottomContent()}</Template.Header>
-      <Template.Content>{renderMainContent()}</Template.Content>
-    </Template>
+    <CSSTransition in={isListVisible} unmountOnExit classNames={transitionClassNames} timeout={250}>
+      <Template title="Todo App">
+        <Template.Header title="Todo App">{renderHeaderBottomContent()}</Template.Header>
+        <Template.Content>{renderMainContent()}</Template.Content>
+      </Template>
+    </CSSTransition>
   );
 };
 

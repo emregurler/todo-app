@@ -15,18 +15,35 @@
   }
 }
 
-.visible {
+.todoList-enter {
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-60%) !important;
+}
+
+.todoList-enter-active {
   z-index: 10;
   visibility: visible;
   opacity: 1;
-  transform: translateX(50%);
-  transition: transform 1s ease-in-out;
+  transform: translateX(-50%) !important;
+  transition: all 0.25s ease-in-out;
 }
 
-.hidden {
+.todoList-exit {
+  z-index: 0;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) !important;
+}
+
+.todoList-exit-active {
   z-index: 0;
   opacity: 0;
+  transform: translateX(-60%) !important;
+  transition: all 0.25s ease-in-out;
+}
+
+.todoList-exit-done {
+  z-index: 0;
   visibility: hidden;
-  transform: translateX(30%);
-  transition: transform 1s ease-in-out;
 }

@@ -55,8 +55,9 @@ const Form = ({ todo, onSubmit, onBack }) => {
           size="large"
           htmlType="button"
           onClick={() => {
-            handleReset();
-            onBack();
+            onBack(() => {
+              handleReset();
+            });
           }}
         >
           Back

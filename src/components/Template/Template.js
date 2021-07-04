@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Header from './TemplateHeader';
 import Content from './TemplateContent';
 
-const Template = ({ className, children }) => {
+const Template = ({ className = '', children }) => {
   return <div className={`${style.container} ${className}`}>{children}</div>;
 };
 

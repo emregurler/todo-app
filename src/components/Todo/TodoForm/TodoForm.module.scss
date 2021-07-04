@@ -1,20 +1,37 @@
-.container {
+.contentContainer {
   background-color: #ececec;
   padding: 32px 24px 0;
 }
 
-.visible {
+.todoForm-enter {
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-30%);
+}
+
+.todoForm-enter-active {
   z-index: 10;
   visibility: visible;
   opacity: 1;
   transform: translateX(-50%);
-  transition: transform 1s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
-.hidden {
+.todoForm-exit {
+  z-index: 0;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.todoForm-exit-active {
   z-index: 0;
   opacity: 0;
-  visibility: hidden;
   transform: translateX(-30%);
-  transition: transform 1s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.todoForm-exit-done {
+  z-index: 0;
+  visibility: hidden;
 }
