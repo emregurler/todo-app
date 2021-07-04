@@ -67,7 +67,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         templateMode: action.templateMode,
-        editingTodo: action.todo ? { ...action.todo } : undefined,
+        editingTodo: action.todo ? { ...action.todo } : null,
       };
     default:
       return state;

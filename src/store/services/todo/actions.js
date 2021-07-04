@@ -28,7 +28,6 @@ export const setTemplateMode = (templateMode, todo) => ({
 export const addTodo = (todo, successCallback) => ({
   type: types.ADD_TODO,
   todo,
-  successCallback,
 });
 
 export const successAddTodo = (todo) => ({

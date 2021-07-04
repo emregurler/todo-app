@@ -21,17 +21,9 @@ const TodoForm = () => {
     const deadline = values.deadline.format(defaultDateFormat);
     const newTodo = { ...values, deadline, done: false };
     if (isEditMode) {
-      dispatch(
-        updateTodo({ id, ...newTodo }, () => {
-          form.resetFields();
-        }),
-      );
+      dispatch(updateTodo({ ...newTodo, id }));
     } else {
-      dispatch(
-        addTodo(newTodo, () => {
-          form.resetFields();
-        }),
-      );
+      dispatch(addTodo(newTodo));
     }
   };
 

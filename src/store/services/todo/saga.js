@@ -35,12 +35,11 @@ function* toggleTodo({ todo }) {
   }
 }
 
-function* addTodo({ todo, successCallback }) {
+function* addTodo({ todo }) {
   try {
     const res = yield call(postTodo, todo);
     console.log(res.data);
     yield put(successAddTodo(res.data));
-    successCallback();
   } catch (e) {
     console.error(e);
     yield put(failAddTodo(e));
@@ -59,8 +58,8 @@ function* removeTodo({ id }) {
 
 function* updateTodo({ todo }) {
   try {
-    yield call(putTodo, id, todo);
-    yield put(successUpdateTodo(id));
+    yield call(putTodo, todo.id, todo);
+    yield put(successUpdateTodo(todo));
   } catch (e) {
     console.error(e);
     yield put(failUpdateTodo(e));

@@ -16,7 +16,7 @@ const Form = ({ todo, onSubmit, onBack }) => {
     } else {
       handleReset();
     }
-  }, [todo]);
+  }, [JSON.stringify(todo)]);
 
   const tailLayout = {
     wrapperCol: { offset: 6, span: 16 },
@@ -48,20 +48,21 @@ const Form = ({ todo, onSubmit, onBack }) => {
         label="Deadline"
         rules={[{ type: 'object', required: true, message: 'Please select time!' }]}
       >
-        <DatePicker format="YYYY-MM-DD HH:mm:ss" />
+        <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime />
       </AntForm.Item>
       <AntForm.Item {...tailLayout}>
         <Button
           size="large"
           htmlType="button"
           onClick={() => {
+            handleReset();
             onBack();
           }}
         >
           Back
         </Button>
         <Button style={{ padding: '0 40px' }} size="large" type="primary" htmlType="submit">
-          Add
+          {todo ? 'Update' : 'Add'}
         </Button>
         <Button size="large" htmlType="button" onClick={handleReset}>
           Reset Fields
