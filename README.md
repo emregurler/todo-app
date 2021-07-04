@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Todo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple single page Todo Application that you can add, delete, toggle, edit todos. There is no authentication, pagination or lazy loading.
 
-## Available Scripts
+If user has not any todo, No Content components is shown.
+User can easily add new todos with `Add` Button on the right. After clicking button, a form comes with animation.
+Editing and deleting operations are located inside each TodoItem. When you hover the todoItem, these buttons are shown
 
-In the project directory, you can run:
+Check [playground](https://todo-app-theta-rose.vercel.app/)
 
-### `npm start`
+## Techs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app uses libraries listed below:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- React
+- Redux
+- Redux-Saga
+- Eslint
+- Prettier
+- Husky
+- Json-server
+- Ant-Design
+- Moment
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+App requires [Node.js](https://nodejs.org/) v10+ to run.
 
-### `npm run build`
+Install the dependencies and devDependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+cd todo-app
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### For development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In development mode, app uses local json-server. It runs in port 5000.
+On the other hand dev server runs on port 3000
+To start json-server and dev server.
 
-### `npm run eject`
+```sh
+npm run dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Note
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Requests are handled depending on NODE_ENV. In development mode it restrictly uses port 5000 until you change json-server port
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In prod mode, you can pass `API_URL` externally with `REACT_APP_API_URL`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
