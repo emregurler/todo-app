@@ -6,6 +6,7 @@ const initialState = {
   filter: filterTypeMap.ALL,
   templateMode: templateModeMap.LIST,
   editingTodo: undefined,
+  hasData: undefined,
   loading: false,
 };
 
@@ -21,6 +22,7 @@ export default (state = initialState, action) => {
         ...state,
         allTodos: action.todos,
         loading: false,
+        hasData: action.todos?.length > 0,
       };
     case types.SUCCESS_TOGGLE_TODO: {
       const foundId = state.allTodos.findIndex((todo) => todo.id === action.id);
@@ -41,11 +43,14 @@ export default (state = initialState, action) => {
         ...state,
         allTodos: [...state.allTodos, action.todo],
         templateMode: templateModeMap.LIST,
+        hasData: true,
       };
     case types.SUCCESS_DELETE_TODO:
+      const allTodos = state.allTodos.filter((todo) => todo.id !== action.id);
       return {
         ...state,
-        allTodos: state.allTodos.filter((todo) => todo.id !== action.id),
+        allTodos,
+        hasData: allTodos.length > 0,
       };
     case types.SUCCESS_UPDATE_TODO: {
       const newTodos = state.allTodos.map((todo) =>

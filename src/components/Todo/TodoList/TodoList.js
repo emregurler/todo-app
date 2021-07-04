@@ -16,7 +16,7 @@ import NoContent from '../NoContent';
 import TodoItem from '../TodoItem';
 
 const TodoList = () => {
-  const { allTodos, filter, loading, templateMode } = useSelector((state) => state.todoReducer);
+  const { allTodos, filter, templateMode, hasData } = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
 
   const filterTodos = (todos, filter) => {
@@ -33,7 +33,6 @@ const TodoList = () => {
     dispatch(setFilter(e.target.value));
   };
 
-  const hasNoContent = allTodos.length === 0 && !loading;
   const isListVisible = templateMode === templateModeMap.LIST;
   const shownTodos = filterTodos(allTodos, filter);
 
@@ -52,7 +51,7 @@ const TodoList = () => {
           <div className={style.headerOperationContainer}>
             <div className={style.operations}>
               <Radio.Group
-                className={hasNoContent ? style.hidden : ''}
+                className={hasData ? '' : style.hidden}
                 onChange={handleFilterChange}
                 defaultValue={filter}
               >
@@ -65,7 +64,7 @@ const TodoList = () => {
               onClick={() => {
                 dispatch(setTemplateMode(templateModeMap.ADD));
               }}
-              size={hasNoContent ? 'large' : 'middle'}
+              size={hasData ? 'middle' : 'large'}
               shape="round"
               style={{ padding: '0 40px' }}
             >
@@ -74,7 +73,7 @@ const TodoList = () => {
           </div>
         </Template.Header>
         <Template.Content>
-          {hasNoContent ? (
+          {hasData === false ? (
             <NoContent />
           ) : (
             shownTodos.map((todo) => (
