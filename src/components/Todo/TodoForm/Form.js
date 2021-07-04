@@ -1,3 +1,5 @@
+import style from './TodoForm.module.scss';
+
 import React, { useEffect } from 'react';
 import { Form as AntForm, Input, Button, DatePicker, Row, Space, Divider } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
@@ -48,7 +50,7 @@ const Form = ({ todo, onSubmit, onBack, loading }) => {
         <DatePicker data-testid="deadline" format="YYYY-MM-DD HH:mm:ss" showTime />
       </AntForm.Item>
       <Divider style={{ border: 'none' }} />
-      <AntForm.Item>
+      <AntForm.Item className={style.formButtonsContainer}>
         <Row justify="space-between">
           <Button
             icon={<ArrowLeftOutlined />}
