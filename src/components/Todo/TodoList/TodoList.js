@@ -3,8 +3,13 @@ import style from './TodoList.module.scss';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Button } from 'antd';
-import { deleteTodo, toggleTodo, setFilter } from '../../../store/services/todo/actions';
-import { filterTypeMap } from '../../../helper/constants';
+import {
+  deleteTodo,
+  toggleTodo,
+  setFilter,
+  setFormMode,
+} from '../../../store/services/todo/actions';
+import { filterTypeMap, templateModeMap } from '../../../helper/constants';
 import Template from '../../Template';
 import NoContent from '../NoContent';
 import TodoItem from '../TodoItem';
@@ -42,7 +47,14 @@ const TodoList = () => {
           <Radio.Button value="active">Active</Radio.Button>
         </Radio.Group>
       </div>
-      <Button size={hasNoContent ? 'large' : 'middle'} shape="round" style={{ padding: '0 40px' }}>
+      <Button
+        onClick={() => {
+          dispatch(setFormMode(templateModeMap.ADD));
+        }}
+        size={hasNoContent ? 'large' : 'middle'}
+        shape="round"
+        style={{ padding: '0 40px' }}
+      >
         Add Todo
       </Button>
     </div>
@@ -69,7 +81,9 @@ const TodoList = () => {
           onDelete={(id) => {
             dispatch(deleteTodo(id));
           }}
-          onEdit={(id) => {}}
+          onEdit={(todo) => {
+            dispatch(setFormMode(templateModeMap.EDIT));
+          }}
         />
       ))
     );

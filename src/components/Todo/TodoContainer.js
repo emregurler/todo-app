@@ -8,7 +8,6 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
 const Todo = () => {
-  const [templateMode, setTemplateMode] = useState(templateModeMap.LIST);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Todo = () => {
   return (
     <>
       <TodoList />
-      <TodoForm mode={templateMode} />
+      <TodoForm />
     </>
   );
 };

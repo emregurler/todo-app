@@ -19,6 +19,11 @@ export const setFilter = (filter) => ({
   filter,
 });
 
+export const setFormMode = (formMode) => ({
+  type: types.SET_FORM_MODE,
+  formMode,
+});
+
 export const addTodo = (todo, successCallback) => ({
   type: types.ADD_TODO,
   todo,
@@ -62,5 +67,20 @@ export const successDeleteTodo = (id) => ({
 
 export const failDeleteTodo = (error) => ({
   type: types.FAIL_DELETE_TODO,
+  error,
+});
+
+export const updateTodo = (todo) => ({
+  type: types.UPDATE_TODO,
+  todo,
+});
+
+export const successUpdateTodo = (todo) => ({
+  type: types.SUCCESS_UPDATE_TODO,
+  todo,
+});
+
+export const failUpdateTodo = (error) => ({
+  type: types.FAIL_UPDATE_TODO,
   error,
 });

@@ -3,7 +3,7 @@ import style from './TodoForm.module.scss';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addTodo } from '../../../store/services/todo/actions';
+import { addTodo, updateTodo } from '../../../store/services/todo/actions';
 import Template from '../../Template';
 import { templateModeMap } from '../../../helper/constants';
 import { defaultDateFormat } from '../../../helper/dateHelper';
@@ -11,8 +11,8 @@ import { defaultDateFormat } from '../../../helper/dateHelper';
 import { Form, Input, Button, DatePicker } from 'antd';
 const { TextArea } = Input;
 
-const TodoForm = ({ mode, todo }) => {
-  const templateTitle = mode === templateModeMap.EDIT ? 'Edit Todo' : 'Add Todo';
+const TodoForm = ({ todo }) => {
+  const { formMode } = useSelector((state) => state.todoReducer);
 
   const renderMainContent = () => {
     const [form] = Form.useForm();
@@ -20,13 +20,22 @@ const TodoForm = ({ mode, todo }) => {
 
     const onFinish = (values) => {
       console.log(values);
+      const id = todo?.id;
       const deadline = values.deadline.format(defaultDateFormat);
       const newTodo = { ...values, deadline, done: false };
-      dispatch(
-        addTodo(newTodo, () => {
-          form.resetFields();
-        }),
-      );
+      if (formMode === templateModeMap.EDIT) {
+        dispatch(
+          updateTodo({ id, ...newTodo }, () => {
+            form.resetFields();
+          }),
+        );
+      } else if (templateModeMap.ADD) {
+        dispatch(
+          addTodo(newTodo, () => {
+            form.resetFields();
+          }),
+        );
+      }
     };
 
     const onReset = () => {
@@ -34,7 +43,7 @@ const TodoForm = ({ mode, todo }) => {
     };
 
     const tailLayout = {
-      wrapperCol: { offset: 8, span: 16 },
+      wrapperCol: { offset: 6, span: 16 },
     };
 
     return (
@@ -64,11 +73,11 @@ const TodoForm = ({ mode, todo }) => {
               <DatePicker format="YYYY-MM-DD HH:mm:ss" />
             </Form.Item>
             <Form.Item {...tailLayout}>
-              <Button size="large" type="primary" htmlType="submit">
-                Submit
+              <Button style={{ padding: '0 40px' }} size="large" type="primary" htmlType="submit">
+                Add
               </Button>
               <Button size="large" htmlType="button" onClick={onReset}>
-                Reset
+                Reset Fields
               </Button>
             </Form.Item>
           </Form>
@@ -77,11 +86,11 @@ const TodoForm = ({ mode, todo }) => {
     );
   };
 
+  const templateTitle = formMode === templateModeMap.EDIT ? 'Edit Todo' : 'Add Todo';
   return <Template className={style.abc} title={templateTitle} mainContent={renderMainContent()} />;
 };
 
 TodoForm.propTypes = {
-  mode: PropTypes.oneOf(['edit', 'add', 'list']),
   todo: PropTypes.object,
 };
 
