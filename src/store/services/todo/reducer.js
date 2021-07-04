@@ -5,7 +5,8 @@ const initialState = {
   allTodos: [],
   shownTodos: [],
   filter: filterTypeMap.ALL,
-  formMode: templateModeMap.LIST,
+  templateMode: templateModeMap.LIST,
+  editingTodo: undefined,
   loading: false,
 };
 
@@ -40,7 +41,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         allTodos: [...state.allTodos, action.todo],
-        formMode: templateModeMap.LIST,
+        templateMode: templateModeMap.LIST,
       };
     case types.SUCCESS_DELETE_TODO:
       return {
@@ -54,7 +55,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         allTodos: newTodos,
-        formMode: templateModeMap.LIST,
+        templateMode: templateModeMap.LIST,
       };
     }
     case types.SET_FILTER:
@@ -62,10 +63,11 @@ export default (state = initialState, action) => {
         ...state,
         filter: action.filter,
       };
-    case types.SET_FORM_MODE:
+    case types.SET_TEMPLATE_MODE:
       return {
         ...state,
-        formMode: action.formMode,
+        templateMode: action.templateMode,
+        editingTodo: action.todo ? { ...action.todo } : undefined,
       };
     default:
       return state;

@@ -19,9 +19,10 @@ export const setFilter = (filter) => ({
   filter,
 });
 
-export const setFormMode = (formMode) => ({
-  type: types.SET_FORM_MODE,
-  formMode,
+export const setTemplateMode = (templateMode, todo) => ({
+  type: types.SET_TEMPLATE_MODE,
+  templateMode,
+  todo,
 });
 
 export const addTodo = (todo, successCallback) => ({

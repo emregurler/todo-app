@@ -7,7 +7,7 @@ import {
   deleteTodo,
   toggleTodo,
   setFilter,
-  setFormMode,
+  setTemplateMode,
 } from '../../../store/services/todo/actions';
 import { filterTypeMap, templateModeMap } from '../../../helper/constants';
 import Template from '../../Template';
@@ -15,7 +15,7 @@ import NoContent from '../NoContent';
 import TodoItem from '../TodoItem';
 
 const TodoList = () => {
-  const { allTodos, filter, loading } = useSelector((state) => state.todoReducer);
+  const { allTodos, filter, loading, templateMode } = useSelector((state) => state.todoReducer);
   const dispatch = useDispatch();
 
   const filterTodos = (todos, filter) => {
@@ -49,7 +49,7 @@ const TodoList = () => {
       </div>
       <Button
         onClick={() => {
-          dispatch(setFormMode(templateModeMap.ADD));
+          dispatch(setTemplateMode(templateModeMap.ADD));
         }}
         size={hasNoContent ? 'large' : 'middle'}
         shape="round"
@@ -62,8 +62,6 @@ const TodoList = () => {
 
   const renderMainContent = () => {
     const shownTodos = filterTodos(allTodos, filter);
-
-    console.log(shownTodos);
     return hasNoContent ? (
       <NoContent />
     ) : (
@@ -82,7 +80,7 @@ const TodoList = () => {
             dispatch(deleteTodo(id));
           }}
           onEdit={(todo) => {
-            dispatch(setFormMode(templateModeMap.EDIT));
+            dispatch(setTemplateMode(templateModeMap.EDIT, todo));
           }}
         />
       ))
@@ -90,7 +88,10 @@ const TodoList = () => {
   };
 
   return (
-    <Template className={style.abc} title="Todo App">
+    <Template
+      className={templateMode === templateModeMap.LIST ? style.visible : style.hidden}
+      title="Todo App"
+    >
       <Template.Header title="Todo App">{renderHeaderBottomContent()}</Template.Header>
       <Template.Content>{renderMainContent()}</Template.Content>
     </Template>

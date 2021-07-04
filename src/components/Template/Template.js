@@ -11,7 +11,6 @@ const Template = ({ className, children }) => {
 
 Template.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
 

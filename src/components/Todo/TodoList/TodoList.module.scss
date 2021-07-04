@@ -15,6 +15,18 @@
   }
 }
 
-.abc {
-  transform: translateX(10%);
+.visible {
+  z-index: 10;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(50%);
+  transition: transform 1s ease-in-out;
+}
+
+.hidden {
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(30%);
+  transition: transform 1s ease-in-out;
 }

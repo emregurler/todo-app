@@ -1,4 +1,5 @@
 import 'antd/dist/antd.css';
+import './override_antd.scss';
 import style from './App.module.scss';
 import Todo from './components/Todo';
 
