@@ -52,6 +52,7 @@ const TodoList = () => {
             <div className={style.operations}>
               <Radio.Group
                 className={hasData ? '' : style.hidden}
+                buttonStyle="solid"
                 onChange={handleFilterChange}
                 defaultValue={filter}
               >
