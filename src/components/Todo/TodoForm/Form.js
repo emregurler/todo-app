@@ -7,7 +7,7 @@ import { defaultDateFormat } from '../../../helper/dateHelper';
 
 const { TextArea } = Input;
 
-const Form = ({ todo, onSubmit, onBack }) => {
+const Form = ({ todo, onSubmit, onBack, loading }) => {
   const [form] = AntForm.useForm();
 
   useEffect(() => {
@@ -64,7 +64,13 @@ const Form = ({ todo, onSubmit, onBack }) => {
           </Button>
 
           <Space>
-            <Button style={{ padding: '0 40px' }} size="large" type="primary" htmlType="submit">
+            <Button
+              loading={loading}
+              style={{ padding: '0 40px' }}
+              size="large"
+              type="primary"
+              htmlType="submit"
+            >
               {todo ? 'Update' : 'Add'}
             </Button>
             <Button size="large" htmlType="button" onClick={handleReset}>
@@ -79,6 +85,7 @@ const Form = ({ todo, onSubmit, onBack }) => {
 
 Form.propTypes = {
   todo: PropTypes.object,
+  loading: PropTypes.bool,
   onSubmit: PropTypes.func,
   onBack: PropTypes.func,
 };

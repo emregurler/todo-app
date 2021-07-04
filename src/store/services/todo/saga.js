@@ -38,7 +38,6 @@ function* toggleTodo({ todo }) {
 function* addTodo({ todo }) {
   try {
     const res = yield call(postTodo, todo);
-    console.log(res.data);
     yield put(successAddTodo(res.data));
   } catch (e) {
     console.error(e);

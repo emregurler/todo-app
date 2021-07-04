@@ -38,12 +38,18 @@ export default (state = initialState, action) => {
         return state;
       }
     }
+    case types.ADD_TODO:
+      return {
+        ...state,
+        loading: true,
+      };
     case types.SUCCESS_ADD_TODO:
       return {
         ...state,
         allTodos: [...state.allTodos, action.todo],
         templateMode: templateModeMap.LIST,
         hasData: true,
+        loading: false,
       };
     case types.SUCCESS_DELETE_TODO:
       const allTodos = state.allTodos.filter((todo) => todo.id !== action.id);
@@ -52,6 +58,13 @@ export default (state = initialState, action) => {
         allTodos,
         hasData: allTodos.length > 0,
       };
+    case types.UPDATE_TODO: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
     case types.SUCCESS_UPDATE_TODO: {
       const newTodos = state.allTodos.map((todo) =>
         todo.id === action.todo.id ? action.todo : todo,
@@ -60,6 +73,7 @@ export default (state = initialState, action) => {
         ...state,
         allTodos: newTodos,
         templateMode: templateModeMap.LIST,
+        loading: false,
       };
     }
     case types.SET_FILTER:

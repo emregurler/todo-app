@@ -11,7 +11,7 @@ import { defaultDateFormat } from '../../../helper/dateHelper';
 import Form from './Form';
 
 const TodoForm = () => {
-  const { templateMode, editingTodo: todo } = useSelector((state) => state.todoReducer);
+  const { templateMode, editingTodo: todo, loading } = useSelector((state) => state.todoReducer);
 
   const isEditMode = templateMode === templateModeMap.EDIT;
   const isTodoFormVisible = templateMode !== templateModeMap.LIST;
@@ -50,6 +50,7 @@ const TodoForm = () => {
           <div className={style.contentContainer}>
             <Form
               todo={todo}
+              loading={loading}
               onSubmit={onFinish}
               onBack={() => {
                 dispatch(setTemplateMode(templateModeMap.LIST));
