@@ -12,6 +12,8 @@ const getTaskStatusWithDate = (taskDate, isDone, dateFormat = defaultDateFormat)
     if (isDone) {
       return taskStatusMap.SUCCESS;
     } else {
+      // knowing user should be hurry or not,
+      // if incoming date is in last 3 hour, it returns hurry
       const nowPlusThreeHour = now.add(3, 'hour');
       const isInLastThreeHour = checkingDate.diff(nowPlusThreeHour) <= 0;
       return isInLastThreeHour ? taskStatusMap.HURRY : taskStatusMap.NEUTRAL;
