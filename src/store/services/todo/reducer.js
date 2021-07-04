@@ -3,7 +3,6 @@ import { filterTypeMap, templateModeMap } from '../../../helper/constants';
 
 const initialState = {
   allTodos: [],
-  shownTodos: [],
   filter: filterTypeMap.ALL,
   templateMode: templateModeMap.LIST,
   editingTodo: undefined,
