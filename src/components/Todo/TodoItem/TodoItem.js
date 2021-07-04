@@ -13,7 +13,7 @@ const TodoItem = (props) => {
   return (
     <div className={style.container}>
       <Checkbox
-        className={style.checkbox}
+        className={`${style.checkbox} ${todo.done ? style['checkbox--checked'] : ''}`}
         checked={todo.done}
         onChange={() => onChangeCheckbox(todo)}
       >
