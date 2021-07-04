@@ -19,9 +19,20 @@ export const setFilter = (filter) => ({
   filter,
 });
 
-export const addTodo = (todo) => ({
+export const addTodo = (todo, successCallback) => ({
   type: types.ADD_TODO,
   todo,
+  successCallback,
+});
+
+export const successAddTodo = (todo) => ({
+  type: types.SUCCESS_ADD_TODO,
+  todo,
+});
+
+export const failAddTodo = (error) => ({
+  type: types.FAIL_ADD_TODO,
+  error,
 });
 
 export const toggleTodo = (todo) => ({
@@ -49,7 +60,7 @@ export const successDeleteTodo = (id) => ({
   id,
 });
 
-export const failSuccessTodo = (error) => ({
+export const failDeleteTodo = (error) => ({
   type: types.FAIL_DELETE_TODO,
   error,
 });

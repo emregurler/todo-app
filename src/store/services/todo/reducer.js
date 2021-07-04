@@ -34,7 +34,12 @@ export default (state = initialState, action) => {
       } else {
         return state;
       }
-    case types.DELETE_TODO:
+    case types.SUCCESS_ADD_TODO:
+      return {
+        ...state,
+        allTodos: [...state.allTodos, action.todo],
+      };
+    case types.SUCCESS_DELETE_TODO:
       return {
         ...state,
         allTodos: state.allTodos.filter((todo) => todo.id !== action.id),

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Header from './TemplateHeader';
 import Content from './TemplateContent';
 
-const Template = ({ title, headerBottomContent, mainContent }) => {
+const Template = ({ className, title, headerBottomContent, mainContent }) => {
   return (
-    <div className={style.container}>
+    <div className={`${style.container} ${className}`}>
       <Header title={title} bottomContent={headerBottomContent} />
       <Content>{mainContent}</Content>
     </div>
@@ -15,6 +15,7 @@ const Template = ({ title, headerBottomContent, mainContent }) => {
 };
 
 Template.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   headerBottomContent: PropTypes.node,
   mainContent: PropTypes.node,

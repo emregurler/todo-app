@@ -21,4 +21,4 @@ const getTaskStatusWithDate = (taskDate, isDone, dateFormat = defaultDateFormat)
   }
 };
 
-export { getTaskStatusWithDate };
+export { getTaskStatusWithDate, defaultDateFormat };

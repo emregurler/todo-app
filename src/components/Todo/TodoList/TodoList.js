@@ -17,9 +17,9 @@ const TodoList = () => {
     if (filter === filterTypeMap.ALL) {
       return todos;
     } else if (filter === filterTypeMap.DONE) {
-      return todos.filter((todo) => todo.done === filterTypeMap.DONE);
+      return todos.filter((todo) => todo.done);
     } else {
-      return todos.filter((todo) => todo.done !== filterTypeMap.DONE);
+      return todos.filter((todo) => !todo.done);
     }
   };
 
@@ -77,6 +77,7 @@ const TodoList = () => {
 
   return (
     <Template
+      className={style.abc}
       title="Todo App"
       headerBottomContent={renderHeaderBottomContent()}
       mainContent={renderMainContent()}

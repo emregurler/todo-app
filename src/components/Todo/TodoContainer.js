@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { fetchAllTodos } from '../../store/services/todo/actions';
 import { templateModeMap } from '../../helper/constants';
 import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 const Todo = () => {
   const [templateMode, setTemplateMode] = useState(templateModeMap.LIST);
@@ -14,7 +15,12 @@ const Todo = () => {
     dispatch(fetchAllTodos());
   }, []);
 
-  return <TodoList />;
+  return (
+    <>
+      <TodoList />
+      <TodoForm mode={templateMode} />
+    </>
+  );
 };
 
 export default Todo;
